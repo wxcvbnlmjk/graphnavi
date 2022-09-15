@@ -25,8 +25,6 @@ const GraphView: FC<Props> = (props) => {
   > => {
     return {
       backgroundColor: theme.colors.gray[900],
-      nodeColor: "#DD7BB8",
-      linkColor: "#677194",
       linkArrows: false,
       simulation: {
         repulsion: 0.5,
@@ -35,13 +33,19 @@ const GraphView: FC<Props> = (props) => {
       // linkColor: link => link.color,
       // nodeColor: node => node.color,
       nodeSizeScale: 0.5,
+      ...(nodeFields?.[NodeFields.COLOR]
+        ? { nodeColor: (node) =>  node.color + ""}
+        : null),
       ...(nodeFields?.[NodeFields.SIZE]
-        ? { nodeSize: (node) => Number(node.size ?? 0) }
+        ? { nodeSize: (node) =>  Number(node.size ?? 0)}
+        : null),        
+      linkWidthScale: 1,    
+      ...(edgeFields?.[EdgeFields.COLOR]
+        ? { linkColor: (edge) =>  edge.color + ""}
         : null),
-      linkWidthScale: 1,
       ...(edgeFields?.[EdgeFields.WIDTH]
-        ? { linkWidth: (edge) => Number(edge.width ?? 0) }
-        : null),
+        ? { linkWidth: (edge) =>  Number(edge.width ?? 0)}
+        : null),       
       events: {
         onClick: (node: Node<GraphNode> | undefined) => {
           console.log("Clicked node: ", node);
