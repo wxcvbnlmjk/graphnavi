@@ -3,12 +3,14 @@ export type Graph = any;
 export type GraphNode = {
   id: string;
   name?: string;
+  color?: string;
   size?: number;
 };
 
 export type GraphEdge = {
   source: string;
   target: string;
+  color?: string;
   width?: number;
 };
 
@@ -22,18 +24,19 @@ export type GraphEdge = {
 // };
 
 export enum NodeFields {
-  ID = "id",
+  ID    = "id"   ,
   LABEL = "label",
-  SIZE = "size",
+  SIZE  = "size" ,
   COLOR = "color",
 }
 
 export enum EdgeFields {
-  ID = "id",
+  ID     = "id"    ,
   SOURCE = "source",
   TARGET = "target",
-  LABEL = "label",
-  WIDTH = "width",
+  LABEL  = "label" ,
+  WIDTH  = "width" ,
+  COLOR  = "color" ,
 }
 
 export type GistResults = {
